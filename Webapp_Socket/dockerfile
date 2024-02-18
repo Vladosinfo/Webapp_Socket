@@ -1,0 +1,14 @@
+FROM python:3.11-slim
+
+WORKDIR /app/webapp_socket
+COPY pyproject.toml poetry.lock* /app/
+
+VOLUME /usr/src/home
+
+RUN pip install poetry
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-dev
+
+COPY . /app
+EXPOSE 3000
+CMD ["python", "./main.py"]
