@@ -3,11 +3,10 @@ FROM python:3.11-slim
 WORKDIR /app/webapp_socket
 COPY pyproject.toml poetry.lock* /app/
 
-VOLUME /usr/src/home
-
 RUN pip install poetry
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-dev
+# VOLUME d:\temp333\storage\:/app/webapp_socket/storage
 
 COPY . /app
 EXPOSE 3000
